@@ -1,4 +1,4 @@
-import { Container, Texture, TilingSprite } from 'pixi.js';
+import { Container, Texture, TilingSprite } from "pixi.js";
 
 export class Background extends Container {
   public backTile: TilingSprite;
@@ -10,9 +10,9 @@ export class Background extends Container {
   constructor() {
     super();
 
-    const back = 'back.png';
-    const backMiddle = 'middle.png';
-    const backTop = 'top.png';
+    const back = "back.png";
+    const backMiddle = "middle.png";
+    const backTop = "top.png";
     this.bgX = 0;
     this.basicSpeed = 1;
 

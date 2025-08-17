@@ -1,10 +1,10 @@
-import { Sprite, Texture } from 'pixi.js';
+import { Sprite, Texture } from "pixi.js";
 
 import {
   randomBool,
   randomFloat,
   randomInt,
-} from '../../../engine/utils/random';
+} from "../../../engine/utils/random";
 
 export enum DIRECTION {
   NE,
@@ -34,7 +34,7 @@ export class Logo extends Sprite {
   }
 
   constructor() {
-    const tex = randomBool() ? 'cho.png' : 'chi.png';
+    const tex = randomBool() ? "cho.png" : "chi.png";
     super({ texture: Texture.from(tex), anchor: 0.5, scale: 0.25 });
     this.direction = randomInt(0, 3);
     this.speed = randomFloat(1, 6);
