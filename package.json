@@ -1,15 +1,16 @@
 {
   "name": "nem",
+  "homepage": "https://maks-k.github.io/1up_classic/",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "start": "npm run dev --watch",
-    "build": "npm run lint && tsc && vite build",
+    "build": "tsc && vite build",
     "prettier_fix": "npx prettier --write .",
     "lint": "eslint .",
     "dev": "vite",
-    "deploy": "gh-pages -d dist"
+    "deploy": "vite build && gh-pages -d dist"
   },
   "dependencies": {
     "@esotericsoftware/spine-pixi-v8": "^4.2.74",

@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
 
-import { assetpackPlugin } from './scripts/assetpack-vite-plugin';
+import { assetpackPlugin } from "./scripts/assetpack-vite-plugin";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,4 +12,5 @@ export default defineConfig({
   define: {
     APP_VERSION: JSON.stringify(process.env.npm_package_version),
   },
+  base: "/1up_classic/",
 });
