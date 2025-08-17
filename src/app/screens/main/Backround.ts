@@ -1,40 +1,45 @@
 import { Container, Texture, TilingSprite } from 'pixi.js';
 
+type TileConfig = { name: string; speedDivider: number };
+const tileSettings: TileConfig[] = [
+  {
+    name: 'back.png',
+    speedDivider: 4,
+  },
+  {
+    name: 'middle.png',
+    speedDivider: 2,
+  },
+  {
+    name: 'top.png',
+    speedDivider: 1,
+  },
+];
+
+const settings = {
+  speed: 1,
+};
+
 export class Background extends Container {
-  public backTile: TilingSprite;
-  public backMiddleTile: TilingSprite;
-  public backTopTile: TilingSprite;
   public basicSpeed: number;
+  public backTiles: BackgroundTile[];
   private bgX: number;
 
   constructor() {
     super();
-
-    const back = 'back.png';
-    const backMiddle = 'middle.png';
-    const backTop = 'top.png';
     this.bgX = 0;
-    this.basicSpeed = 1;
+    this.basicSpeed = settings.speed;
 
-    const backTexture = Texture.from(back);
-    this.backTile = this.createTile(backTexture);
-    this.backTile.anchor.set(0.5);
-
-    const backMiddleTexture = Texture.from(backMiddle);
-    this.backMiddleTile = this.createTile(backMiddleTexture);
-    this.backMiddleTile.anchor.set(0.5);
-
-    const backTopTexture = Texture.from(backTop);
-    this.backTopTile = this.createTile(backTopTexture);
-    this.backTopTile.anchor.set(0.5);
+    this.backTiles = tileSettings.map((tileConfig) => {
+      const texture = Texture.from(tileConfig.name);
+      const tile = this.createTile(texture, tileConfig);
+      tile.anchor.set(0.5);
+      return tile;
+    });
   }
 
-  createTile(texture: Texture) {
-    const tiling = new TilingSprite({
-      texture,
-      width: 1920,
-      height: 1080,
-    });
+  createTile(texture: Texture, config: TileConfig) {
+    const tiling = new BackgroundTile(texture, 1920, 1080, config);
 
     tiling.position.set(0, 0);
     return this.addChild(tiling);
@@ -42,8 +47,23 @@ export class Background extends Container {
 
   update() {
     this.bgX = this.bgX + this.basicSpeed;
-    this.backTopTile.tilePosition.x = -this.bgX;
-    this.backMiddleTile.tilePosition.x = -this.bgX / 2;
-    this.backTile.tilePosition.x = -this.bgX / 4;
+    this.backTiles.forEach((tile) => {
+      tile.tilePosition.x = -this.bgX / tile.speedDivider;
+    });
+  }
+}
+
+class BackgroundTile extends TilingSprite {
+  public speedDivider: number;
+
+  constructor(
+    texture: Texture,
+    width: number,
+    height: number,
+    config: TileConfig
+  ) {
+    super(texture, width, height);
+
+    this.speedDivider = config.speedDivider;
   }
 }
