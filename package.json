@@ -10,7 +10,14 @@
     "prettier_fix": "npx prettier --write .",
     "lint": "eslint .",
     "dev": "vite",
+    "prepare": "husky",
     "deploy": "vite build && gh-pages -d dist"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@esotericsoftware/spine-pixi-v8": "^4.2.74",
@@ -22,11 +29,13 @@
   "devDependencies": {
     "@assetpack/core": "^1.4.0",
     "@eslint/js": "^9.21.0",
-    "eslint": "^9.21.0",
+    "eslint": "^9.33.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",
     "gh-pages": "^6.3.0",
-    "prettier": "^3.5.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
     "typescript": "~5.7.3",
     "typescript-eslint": "^8.25.0",
     "vite": "^6.2.0"
