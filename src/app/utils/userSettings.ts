@@ -1,10 +1,10 @@
-import { storage } from "../../engine/utils/storage";
-import { engine } from "../getEngine";
+import { storage } from '../../engine/utils/storage';
+import { engine } from '../getEngine';
 
 // Keys for saved items in storage
-const KEY_VOLUME_MASTER = "volume-master";
-const KEY_VOLUME_BGM = "volume-bgm";
-const KEY_VOLUME_SFX = "volume-sfx";
+const KEY_VOLUME_MASTER = 'volume-master';
+const KEY_VOLUME_BGM = 'volume-bgm';
+const KEY_VOLUME_SFX = 'volume-sfx';
 
 /**
  * Persistent user settings of volumes.

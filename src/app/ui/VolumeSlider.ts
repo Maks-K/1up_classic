@@ -1,7 +1,7 @@
-import { Slider } from "@pixi/ui";
-import { Graphics } from "pixi.js";
+import { Slider } from '@pixi/ui';
+import { Graphics } from 'pixi.js';
 
-import { Label } from "./Label";
+import { Label } from './Label';
 
 /**
  * A volume slider component to be used in the Settings popup.
@@ -30,7 +30,7 @@ export class VolumeSlider extends Slider {
         border,
         width - border * 2,
         height - border * 2,
-        radius,
+        radius
       )
       .fill({ color: backgroundColor });
 
@@ -42,7 +42,7 @@ export class VolumeSlider extends Slider {
         border,
         width - border * 2,
         height - border * 2,
-        radius,
+        radius
       )
       .fill({ color: fillColor });
 
@@ -63,7 +63,7 @@ export class VolumeSlider extends Slider {
     this.messageLabel = new Label({
       text: label,
       style: {
-        align: "left",
+        align: 'left',
         fill: 0x4a4a4a,
         fontSize: 18,
       },

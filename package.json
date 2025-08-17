@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npm run dev --watch",
     "build": "npm run lint && tsc && vite build",
+    "prettier_fix": "npx prettier --write .",
     "lint": "eslint .",
     "dev": "vite"
   },

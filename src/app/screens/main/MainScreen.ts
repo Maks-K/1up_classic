@@ -1,20 +1,20 @@
-import { FancyButton } from "@pixi/ui";
-import { animate } from "motion";
-import type { AnimationPlaybackControls } from "motion/react";
-import type { Ticker } from "pixi.js";
-import { Container } from "pixi.js";
+import { FancyButton } from '@pixi/ui';
+import { animate } from 'motion';
+import type { AnimationPlaybackControls } from 'motion/react';
+import type { Ticker } from 'pixi.js';
+import { Container } from 'pixi.js';
 
-import { engine } from "../../getEngine";
-import { PausePopup } from "../../popups/PausePopup";
-import { SettingsPopup } from "../../popups/SettingsPopup";
-import { Button } from "../../ui/Button";
+import { engine } from '../../getEngine';
+import { PausePopup } from '../../popups/PausePopup';
+import { SettingsPopup } from '../../popups/SettingsPopup';
+import { Button } from '../../ui/Button';
 
-import { Bouncer } from "./Bouncer";
+import { Bouncer } from './Bouncer';
 
 /** The screen that holds the app */
 export class MainScreen extends Container {
   /** Assets bundles required by this screen */
-  public static assetBundles = ["main"];
+  public static assetBundles = ['main'];
 
   public mainContainer: Container;
   private pauseButton: FancyButton;
@@ -46,27 +46,27 @@ export class MainScreen extends Container {
       },
     };
     this.pauseButton = new FancyButton({
-      defaultView: "icon-pause.png",
+      defaultView: 'icon-pause.png',
       anchor: 0.5,
       animations: buttonAnimations,
     });
     this.pauseButton.onPress.connect(() =>
-      engine().navigation.presentPopup(PausePopup),
+      engine().navigation.presentPopup(PausePopup)
     );
     this.addChild(this.pauseButton);
 
     this.settingsButton = new FancyButton({
-      defaultView: "icon-settings.png",
+      defaultView: 'icon-settings.png',
       anchor: 0.5,
       animations: buttonAnimations,
     });
     this.settingsButton.onPress.connect(() =>
-      engine().navigation.presentPopup(SettingsPopup),
+      engine().navigation.presentPopup(SettingsPopup)
     );
     this.addChild(this.settingsButton);
 
     this.addButton = new Button({
-      text: "Дабавіть Сірьожу",
+      text: 'Дабавіть Сірьожу',
       width: 275,
       height: 110,
     });
@@ -74,7 +74,7 @@ export class MainScreen extends Container {
     this.addChild(this.addButton);
 
     this.removeButton = new Button({
-      text: "Убрать Сірьожу",
+      text: 'Убрать Сірьожу',
       width: 275,
       height: 110,
     });
@@ -128,7 +128,7 @@ export class MainScreen extends Container {
 
   /** Show screen with animations */
   public async show(): Promise<void> {
-    engine().audio.bgm.play("main/sounds/bgm-main.mp3", { volume: 0.5 });
+    engine().audio.bgm.play('main/sounds/bgm-main.mp3', { volume: 0.5 });
 
     const elementsToAnimate = [
       this.pauseButton,
@@ -143,7 +143,7 @@ export class MainScreen extends Container {
       finalPromise = animate(
         element,
         { alpha: 1 },
-        { duration: 0.3, delay: 0.75, ease: "backOut" },
+        { duration: 0.3, delay: 0.75, ease: 'backOut' }
       );
     }
 

@@ -1,10 +1,10 @@
-import { animate } from "motion";
-import { BlurFilter, Container, Sprite, Texture } from "pixi.js";
+import { animate } from 'motion';
+import { BlurFilter, Container, Sprite, Texture } from 'pixi.js';
 
-import { engine } from "../getEngine";
-import { Button } from "../ui/Button";
-import { Label } from "../ui/Label";
-import { RoundedBox } from "../ui/RoundedBox";
+import { engine } from '../getEngine';
+import { Button } from '../ui/Button';
+import { Label } from '../ui/Label';
+import { RoundedBox } from '../ui/RoundedBox';
 
 /** Popup that shows up when gameplay is paused */
 export class PausePopup extends Container {
@@ -34,13 +34,13 @@ export class PausePopup extends Container {
     this.panel.addChild(this.panelBase);
 
     this.title = new Label({
-      text: "Paused",
+      text: 'Paused',
       style: { fill: 0xec1561, fontSize: 50 },
     });
     this.title.y = -80;
     this.panel.addChild(this.title);
 
-    this.doneButton = new Button({ text: "Resume" });
+    this.doneButton = new Button({ text: 'Resume' });
     this.doneButton.y = 70;
     this.doneButton.onPress.connect(() => engine().navigation.dismissPopup());
     this.panel.addChild(this.doneButton);
@@ -64,11 +64,11 @@ export class PausePopup extends Container {
     }
     this.bg.alpha = 0;
     this.panel.pivot.y = -400;
-    animate(this.bg, { alpha: 0.8 }, { duration: 0.2, ease: "linear" });
+    animate(this.bg, { alpha: 0.8 }, { duration: 0.2, ease: 'linear' });
     await animate(
       this.panel.pivot,
       { y: 0 },
-      { duration: 0.3, ease: "backOut" },
+      { duration: 0.3, ease: 'backOut' }
     );
   }
 
@@ -78,11 +78,11 @@ export class PausePopup extends Container {
     if (currentEngine.navigation.currentScreen) {
       currentEngine.navigation.currentScreen.filters = [];
     }
-    animate(this.bg, { alpha: 0 }, { duration: 0.2, ease: "linear" });
+    animate(this.bg, { alpha: 0 }, { duration: 0.2, ease: 'linear' });
     await animate(
       this.panel.pivot,
       { y: -500 },
-      { duration: 0.3, ease: "backIn" },
+      { duration: 0.3, ease: 'backIn' }
     );
   }
 }
