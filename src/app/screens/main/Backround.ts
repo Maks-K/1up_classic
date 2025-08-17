@@ -1,17 +1,17 @@
-import { Container, Texture, TilingSprite } from 'pixi.js';
+import { Container, Texture, TilingSprite } from "pixi.js";
 
 type TileConfig = { name: string; speedDivider: number };
 const tileSettings: TileConfig[] = [
   {
-    name: 'back.png',
+    name: "back.png",
     speedDivider: 4,
   },
   {
-    name: 'middle.png',
+    name: "middle.png",
     speedDivider: 2,
   },
   {
-    name: 'top.png',
+    name: "top.png",
     speedDivider: 1,
   },
 ];
@@ -60,7 +60,7 @@ class BackgroundTile extends TilingSprite {
     texture: Texture,
     width: number,
     height: number,
-    config: TileConfig
+    config: TileConfig,
   ) {
     super(texture, width, height);
 
