@@ -2,18 +2,41 @@
 import type { AssetPackConfig } from "@assetpack/core";
 import { AssetPack } from "@assetpack/core";
 import { pixiPipes } from "@assetpack/core/pixi";
+import {
+  spineAtlasCompress,
+  spineAtlasMipmap,
+  spineAtlasManifestMod,
+} from "@assetpack/core/spine";
 import type { Plugin, ResolvedConfig } from "vite";
+const compression = {
+  jpg: {},
+  png: { quality: 90 },
+  webp: { quality: 80, alphaQuality: 80 },
+};
+const mipmap = {
+  template: "@%%x",
+  resolutions: { default: 1, low: 0.5 },
+  fixedResolution: "default",
+};
 
 export function assetpackPlugin() {
   const apConfig = {
     entry: "./raw-assets",
     pipes: [
       ...pixiPipes({
+        compression,
+        resolutions: mipmap.resolutions,
         cacheBust: false,
         manifest: {
           output: "./src/manifest.json",
         },
       }),
+      // add Spine-specific steps AFTER pixiPipes
+      spineAtlasCompress(compression),
+      spineAtlasMipmap(mipmap),
+
+      // make sure Spine atlases get written into the Pixi manifest
+      spineAtlasManifestMod(),
     ],
   } as AssetPackConfig;
   let mode: ResolvedConfig["command"];
