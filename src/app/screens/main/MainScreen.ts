@@ -10,6 +10,7 @@ import { SettingsPopup } from '../../popups/SettingsPopup';
 import { Button } from '../../ui/Button';
 
 import { Bouncer } from './Bouncer';
+import { Background } from './Backround.ts';
 
 /** The screen that holds the app */
 export class MainScreen extends Container {
@@ -22,6 +23,7 @@ export class MainScreen extends Container {
   private addButton: FancyButton;
   private removeButton: FancyButton;
   private bouncer: Bouncer;
+  private background: Background;
   private paused = false;
 
   constructor() {
@@ -29,6 +31,8 @@ export class MainScreen extends Container {
 
     this.mainContainer = new Container();
     this.addChild(this.mainContainer);
+    this.background = new Background();
+    this.mainContainer.addChild(this.background);
     this.bouncer = new Bouncer();
 
     const buttonAnimations = {
@@ -90,6 +94,7 @@ export class MainScreen extends Container {
   public update(_time: Ticker) {
     if (this.paused) return;
     this.bouncer.update();
+    this.background.update();
   }
 
   /** Pause gameplay - automatically fired when a popup is presented */
