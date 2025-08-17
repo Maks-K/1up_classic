@@ -11,6 +11,7 @@ import { Button } from "../../ui/Button";
 
 import { Bouncer } from "./Bouncer";
 import { Background } from "./Backround.ts";
+import {Bomber} from "./Bomber.ts";
 
 /** The screen that holds the app */
 export class MainScreen extends Container {
@@ -23,6 +24,7 @@ export class MainScreen extends Container {
   private addButton: FancyButton;
   private removeButton: FancyButton;
   private bouncer: Bouncer;
+  private bomber: Bomber;
   private background: Background;
   private paused = false;
 
@@ -34,6 +36,13 @@ export class MainScreen extends Container {
     this.background = new Background();
     this.mainContainer.addChild(this.background);
     this.bouncer = new Bouncer();
+    this.bomber = new Bomber({
+      skeleton: "drone.spine.json",
+      atlas:    "nemesis.atlas",
+      scale: 0.5,
+    });
+    this.mainContainer.addChild(this.bomber.container);
+    this.bomber.start();
 
     const buttonAnimations = {
       hover: {
