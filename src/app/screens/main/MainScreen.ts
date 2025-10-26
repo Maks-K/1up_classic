@@ -100,7 +100,7 @@ export class MainScreen extends Container {
       width: 275,
       height: 110,
     });
-    this.addButton.onPress.connect(() => this.bouncer.add());
+    //this.addButton.onPress.connect(() => this.bouncer.add());
     this.addChild(this.addButton);
 
     this.removeButton = new Button({
@@ -108,7 +108,7 @@ export class MainScreen extends Container {
       width: 275,
       height: 110,
     });
-    this.removeButton.onPress.connect(() => this.bouncer.remove());
+    //this.removeButton.onPress.connect(() => this.bouncer.remove());
     this.addChild(this.removeButton);
   }
 
@@ -119,7 +119,7 @@ export class MainScreen extends Container {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(_time: Ticker) {
     if (this.paused) return;
-    this.bouncer.update();
+    //this.bouncer.update();
     this.background.update();
     this.ammo.update();
     this.bomber.update();
@@ -156,7 +156,7 @@ export class MainScreen extends Container {
     this.addButton.x = width / 2 + 200;
     this.addButton.y = height - 75;
 
-    this.bouncer.resize(width, height);
+    //this.bouncer.resize(width, height);
   }
 
   /** Show screen with animations */
@@ -181,7 +181,7 @@ export class MainScreen extends Container {
     }
 
     await finalPromise;
-    this.bouncer.show(this);
+    //this.bouncer.show(this);
   }
 
   /** Hide screen with animations */
