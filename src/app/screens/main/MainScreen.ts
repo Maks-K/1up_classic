@@ -11,7 +11,8 @@ import { Button } from "../../ui/Button";
 
 import { Bouncer } from "./Bouncer";
 import { Background } from "./Backround.ts";
-import {Bomber} from "./Bomber.ts";
+import { Bomber } from "./Bomber.ts";
+import { Ammo } from "./Ammo.ts";
 
 /** The screen that holds the app */
 export class MainScreen extends Container {
@@ -25,6 +26,7 @@ export class MainScreen extends Container {
   private removeButton: FancyButton;
   private bouncer: Bouncer;
   private bomber: Bomber;
+  private ammo: Ammo;
   private background: Background;
   private paused = false;
 
@@ -38,11 +40,26 @@ export class MainScreen extends Container {
     this.bouncer = new Bouncer();
     this.bomber = new Bomber({
       skeleton: "drone.spine.json",
-      atlas:    "nemesis.atlas",
+      atlas: "nemesis.atlas",
       scale: 0.5,
     });
     this.mainContainer.addChild(this.bomber.container);
     this.bomber.start();
+
+    this.ammo = new Ammo({
+      spineConfig: {
+        skeleton: "amu.spine.json",
+        atlas: "nemesis.atlas",
+        scale: 0.5,
+      },
+      boomSpineConfig: {
+        skeleton: "boom.spine.json",
+        atlas: "nemesis.atlas",
+        scale: 0.5,
+      },
+      dropPoint: this.bomber.container.position,
+      parent: this.mainContainer,
+    });
 
     const buttonAnimations = {
       hover: {
@@ -83,7 +100,7 @@ export class MainScreen extends Container {
       width: 275,
       height: 110,
     });
-    this.addButton.onPress.connect(() => this.bouncer.add());
+    //this.addButton.onPress.connect(() => this.bouncer.add());
     this.addChild(this.addButton);
 
     this.removeButton = new Button({
@@ -91,7 +108,7 @@ export class MainScreen extends Container {
       width: 275,
       height: 110,
     });
-    this.removeButton.onPress.connect(() => this.bouncer.remove());
+    //this.removeButton.onPress.connect(() => this.bouncer.remove());
     this.addChild(this.removeButton);
   }
 
@@ -102,8 +119,10 @@ export class MainScreen extends Container {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(_time: Ticker) {
     if (this.paused) return;
-    this.bouncer.update();
+    //this.bouncer.update();
     this.background.update();
+    this.ammo.update();
+    this.bomber.update();
   }
 
   /** Pause gameplay - automatically fired when a popup is presented */
@@ -137,7 +156,7 @@ export class MainScreen extends Container {
     this.addButton.x = width / 2 + 200;
     this.addButton.y = height - 75;
 
-    this.bouncer.resize(width, height);
+    //this.bouncer.resize(width, height);
   }
 
   /** Show screen with animations */
@@ -162,7 +181,7 @@ export class MainScreen extends Container {
     }
 
     await finalPromise;
-    this.bouncer.show(this);
+    //this.bouncer.show(this);
   }
 
   /** Hide screen with animations */
