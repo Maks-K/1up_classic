@@ -39,7 +39,7 @@ export class Background extends Container {
   }
 
   createTile(texture: Texture, config: TileConfig) {
-    const tiling = new BackgroundTile(texture, 1920, 1080, config);
+    const tiling = new BackgroundTile(texture, 2048, 922, config);
 
     tiling.position.set(0, 0);
     return this.addChild(tiling);
