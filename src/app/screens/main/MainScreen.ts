@@ -9,7 +9,7 @@ import { PausePopup } from "../../popups/PausePopup";
 import { SettingsPopup } from "../../popups/SettingsPopup";
 import { Button } from "../../ui/Button";
 
-import { Bouncer } from "./Bouncer";
+// import { Bouncer } from "./Bouncer";
 import { Background } from "./Backround.ts";
 import { Bomber } from "./Bomber.ts";
 import { Ammo } from "./Ammo.ts";
@@ -24,7 +24,7 @@ export class MainScreen extends Container {
   private settingsButton: FancyButton;
   private addButton: FancyButton;
   private removeButton: FancyButton;
-  private bouncer: Bouncer;
+  //private bouncer: Bouncer;
   private bomber: Bomber;
   private ammo: Ammo;
   private background: Background;
@@ -37,7 +37,7 @@ export class MainScreen extends Container {
     this.addChild(this.mainContainer);
     this.background = new Background();
     this.mainContainer.addChild(this.background);
-    this.bouncer = new Bouncer();
+    //this.bouncer = new Bouncer();
     this.bomber = new Bomber({
       skeleton: "drone.spine.json",
       atlas: "nemesis.atlas",
